@@ -13,7 +13,7 @@ const flightSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  estimatedArrival: {
+  arrivalDate: {
     type: Date,
     required: true,
   },
@@ -34,6 +34,14 @@ const flightSchema = new mongoose.Schema({
     type: Number,
     required: true,
     default: 0,
+  },
+  flightNumber: { 
+    type: String, 
+    required: true,
+   },
+   airline: { 
+    type: String, 
+    required: true 
   },
 });
 

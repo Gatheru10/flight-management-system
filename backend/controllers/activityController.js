@@ -18,10 +18,19 @@ const saveActivity = asyncHandler(async (req, res) => {
 
 // ✅ GET /api/users/activity for logged-in user (updated)
 const getLoggedInUserActivity = asyncHandler(async (req, res) => {
-  const activity = await Activity.find({ userId: req.user._id }).sort({ timestamp: -1 });
+  const activities = await Activity.find({ userId: req.user._id }).sort({ timestamp: -1 });
 
-  // 🔁 Return empty array with 200 instead of 404
-  res.status(200).json(activity);
+  if (activities.length === 0) {
+    return res.status(200).json(null); // So frontend shows "No recent activity found"
+  }
+
+  const latest = activities[0];
+
+  res.status(200).json({
+    lastPage: latest.lastPage,
+    action: latest.action,
+    timestamp: latest.timestamp,
+  });
 });
 
 module.exports = {

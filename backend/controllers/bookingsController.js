@@ -55,19 +55,28 @@ exports.cancelBooking = async (req, res) => {
       user: req.user.id,
     });
 
-    if (!booking) return res.status(404).json({ message: 'Booking not found' });
+    if (!booking) {
+      return res.status(404).json({ message: 'Booking not found' });
+    }
 
-    await booking.deleteOne();
+    if (booking.status === 'Cancelled') {
+      return res.status(400).json({ message: 'Booking is already cancelled' });
+    }
 
-    // ✅ Track lastAction
-    await updateUserActivity(req.user, { lastAction: `Cancelled Booking for Flight ${booking.flightNumber}` });
+    // Update status to Cancelled
+    booking.status = 'Cancelled';
 
-    res.status(200).json({ message: 'Booking canceled' });
+    await booking.save();
+
+    res.status(200).json({
+      message: 'Booking cancelled successfully',
+      booking,
+    });
   } catch (error) {
-    console.error("Cancel booking error:", error);
+    console.error('Cancellation error:', error);
     res.status(500).json({ message: 'Server error' });
   }
-};
+}
 
 // Create hotel booking
 exports.createHotelBooking = async (req, res) => {
@@ -96,3 +105,4 @@ exports.createHotelBooking = async (req, res) => {
     res.status(500).json({ message: 'Hotel booking failed. Please try again.' });
   }
 };
+

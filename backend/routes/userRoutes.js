@@ -5,6 +5,8 @@ const nodemailer = require('nodemailer');
 const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const { protect, isAdmin } = require('../middlewares/authMiddleware');
+const logActivity = require('../middlewares/activityLogger');
+
 const {
   registerUser,
   loginUser,
@@ -13,10 +15,11 @@ const {
   getUserActivity,
   createAdminUser,
 } = require('../controllers/userController');
+
 const {
   getLoggedInUserActivity,
-  saveActivity,
 } = require('../controllers/activityController');
+
 const User = require('../models/User');
 
 // =================== PUBLIC ROUTES ===================
@@ -77,10 +80,10 @@ router.post('/reset-password/:token', asyncHandler(async (req, res) => {
 
 // =================== PROTECTED ROUTES ===================
 
-// Get current logged-in user's info
-router.get('/me', protect, getMe);
+// ✅ Get current logged-in user's info + activity logging
+router.get('/me', protect, logActivity('Viewed Profile'), getMe);
 
-// Log user activity
+// Log user activity (can still keep this if used elsewhere)
 router.post('/activity', protect, updateActivity);
 
 // Get activity for logged-in user
