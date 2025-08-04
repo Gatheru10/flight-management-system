@@ -1,0 +1,19 @@
+/* DashboardHome.css */
+.stat-card {
+  flex: 1 1 200px;
+  padding: 20px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+}
+.stat-card.users { background: #007bff; }
+.stat-card.flights { background: #198754; }
+.stat-card.bookings { background: #0dcaf0; }
+.stat-card.hotels { background: #212529; }
+
+.chart-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}

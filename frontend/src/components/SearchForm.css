@@ -1,0 +1,95 @@
+/* Flight Search Form Styles */
+.flight-search-form {
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #0066cc 0%, #00aaff 100%);
+}
+
+.search-card {
+  position: relative;
+  z-index: 1;
+  margin-top: 1rem;
+}
+
+.nav-pills {
+  background: #f8f9fa;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.nav-pills .nav-link {
+  color: #495057;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.location-fields {
+  position: relative;
+}
+
+.swap-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dee2e6;
+  background: white;
+  color: #0d6efd;
+}
+
+.swap-btn:hover {
+  background: #f8f9fa;
+  color: #0b5ed7;
+}
+
+.form-floating label {
+  display: flex;
+  align-items: center;
+}
+
+.form-control, .form-select {
+  padding: 1rem;
+  height: calc(3.5rem + 2px);
+  border: 1px solid #dee2e6;
+}
+
+.form-control:focus, .form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .location-fields {
+    margin-bottom: 1rem;
+  }
+  
+  .swap-btn {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}

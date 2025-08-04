@@ -1,0 +1,42 @@
+/* Contact Page Styles */
+.card {
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+}
+
+.form-control:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary {
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+}
+
+/* Support Card */
+.bg-primary {
+  background-color: #0d6efd !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .display-5 {
+    font-size: 2rem;
+  }
+  
+  .lead {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,24 @@
+/* AboutSection.css or your global CSS */
+.about-section {
+  position: relative;
+}
+
+.about-section .img-fluid {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.about-section ul li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.about-section ul li:last-child {
+  border-bottom: none;
+}
+
+.about-section .lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}

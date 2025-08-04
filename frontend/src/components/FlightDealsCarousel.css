@@ -1,0 +1,50 @@
+.flight-deals-container {
+  background: linear-gradient(to right, #ff6a00, #ee0979);
+  border-radius: 1rem;
+  padding: 2rem;
+  color: #fff;
+}
+
+.flight-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #fff;
+  color: #000;
+  transition: transform 0.2s ease-in-out;
+}
+
+.flight-card:hover {
+  transform: translateY(-4px);
+}
+
+.flight-image {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  position: relative;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: red;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.route-overlay {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
