@@ -1,4 +1,4 @@
-const Flight = require('./models/Flight');
+const Flight = require('../models/Flight');
 
 // GET /api/flights?origin=&destination=&date=
 const getAllFlights = async (req, res) => {

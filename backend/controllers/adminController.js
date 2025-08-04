@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const Booking = require('../models/Booking');
 const HotelBooking = require('../models/HotelBookings');
-const Flight = require('../models/flight');
+const Flight = require('../models/Flight');
 const Hotel = require('../models/Hotel');
 const mongoose = require('mongoose');
 
