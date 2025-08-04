@@ -1,8 +1,0 @@
-config:
-  target: "http://localhost:5000"
-  ...
-scenarios:
-  - name: "Fetch all flights"
-    flow:
-      - get:
-          url: "/api/flights"

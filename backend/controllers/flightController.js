@@ -6,8 +6,8 @@ const getAllFlights = async (req, res) => {
 
   try {
     const query = {};
-    if (origin) query.origin = origin;
-    if (destination) query.destination = destination;
+    if (origin) query.origin = { $regex: new RegExp(`^${origin}$`, "i") };
+    if (destination) query.destination = { $regex: new RegExp(`^${destination}$`, "i") };
     if (date) {
       const searchDate = new Date(date);
       const nextDay = new Date(searchDate);

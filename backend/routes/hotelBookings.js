@@ -6,7 +6,16 @@ const { protect } = require('../middlewares/authMiddleware');
 // 👉 Create hotel booking
 router.post('/', protect, async (req, res) => {
   try {
-    const { hotelName, location, price, rating, category, image } = req.body;
+    const {
+      hotelName,
+      location,
+      price,
+      rating,
+      category,
+      image,
+      checkInDate,
+      checkOutDate,
+    } = req.body;
 
     const booking = await HotelBooking.create({
       user: req.user.id,
@@ -15,7 +24,9 @@ router.post('/', protect, async (req, res) => {
       price,
       rating,
       category,
-      image
+      image,
+      checkInDate,
+      checkOutDate,
     });
 
     res.status(201).json({ message: 'Hotel booking successful', booking });
