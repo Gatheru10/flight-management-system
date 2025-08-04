@@ -61,16 +61,14 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!user) {
     console.warn('❌ User not found with email:', email);
-    res.status(401);
-    throw new Error('Invalid email or password');
+    return res.status(401).json({ message: 'Invalid email or password' });
   }
 
   const isMatch = await user.matchPassword(password);
 
   if (!isMatch) {
     console.warn('❌ Incorrect password for:', email);
-    res.status(401);
-    throw new Error('Invalid email or password');
+    return res.status(401).json({ message: 'Invalid email or password' });
   }
 
   console.log('✅ User logged in:', email);
