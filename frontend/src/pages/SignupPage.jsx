@@ -35,7 +35,7 @@ const SignupPage = () => {
 
       const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-      const response = await axios.post(`${backendUrl}/api/users/signup`, {
+      const response = await axios.post(`${backendUrl}/api/users/register`, {
         name,
         email,
         password,
