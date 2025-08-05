@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -30,25 +31,24 @@ const SignupPage = () => {
     try {
       setLoading(true);
 
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // In real app, call signup API here
-
-      const user = {
+      // Replace with your actual backend URL
+       const backendUrl = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+       
+       const { data } = await axios.post(`${backendUrl}/api/users/signup`, {
         name,
         email,
-        avatar: `https://i.pravatar.cc/150?u=${email}`,
-        token: 'mock-signup-token'
-      };
+        password,
+      });
 
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', user.token);
+      // Save user & token to localStorage
+      localStorage.setItem('user', JSON.stringify(data));
+      localStorage.setItem('token', data.token);
 
+      // Redirect to homepage
       navigate('/', { replace: true });
 
     } catch (err) {
-      setError('Signup failed. Please try again.');
+      setError(err.response?.data?.message || 'Signup failed. Please try again.');
     } finally {
       setLoading(false);
     }
