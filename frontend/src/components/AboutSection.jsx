@@ -17,7 +17,7 @@ const AboutSection = () => {
         <div className="row align-items-center">
           <div className="col-lg-6 mb-4 mb-lg-0">
             <img
-              src="/images/about-flight.jpg"
+              src="/Images/about-flight.jpg"
               alt="About our flight services"
               className="img-fluid rounded-3 shadow-lg"
             />

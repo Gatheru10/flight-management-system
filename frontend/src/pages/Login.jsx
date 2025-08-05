@@ -71,8 +71,8 @@ const LoginPage = () => {
   };
 
   const backgroundImage = theme === 'light'
-    ? '/images/login.jpg'
-    : '/images/night.jpg';
+    ? '/Images/login.jpg'
+    : '/Images/night.jpg';
 
   const backgroundStyle = {
     backgroundImage: `url(${backgroundImage})`,
