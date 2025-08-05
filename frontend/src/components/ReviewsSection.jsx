@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
+import axios from "../axiosConfig"; // Updated to use your axiosConfig
 import { UserContext } from "../context/UserContext";
 
 const ReviewsSection = () => {
@@ -8,14 +8,25 @@ const ReviewsSection = () => {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(5);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // Utility to extract reviews array safely
+  const extractReviews = (data) => {
+    if (Array.isArray(data)) return data;
+    if (data && Array.isArray(data.reviews)) return data.reviews;
+    return [];
+  };
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         const res = await axios.get("/api/reviews");
-        setReviews(res.data);
+        console.log("Fetched reviews:", res.data);
+        const safeReviews = extractReviews(res.data);
+        setReviews(safeReviews);
       } catch (err) {
         console.error("Failed to fetch reviews:", err);
+        setError("Unable to load reviews at the moment.");
       } finally {
         setLoading(false);
       }
@@ -41,11 +52,14 @@ const ReviewsSection = () => {
       );
       setText("");
       setRating(5);
-      // Reload reviews
+
+      // Reload reviews after submission
       const res = await axios.get("/api/reviews");
-      setReviews(res.data);
+      const safeReviews = extractReviews(res.data);
+      setReviews(safeReviews);
     } catch (err) {
       console.error("Error submitting review:", err);
+      setError("Could not submit review. Try again.");
     }
   };
 
@@ -55,7 +69,9 @@ const ReviewsSection = () => {
 
       {loading ? (
         <p>Loading reviews...</p>
-      ) : reviews.length > 0 ? (
+      ) : error ? (
+        <p className="text-danger">{error}</p>
+      ) : Array.isArray(reviews) && reviews.length > 0 ? (
         reviews.map((review) => (
           <div key={review._id} className="mb-3 p-3 border rounded shadow-sm">
             <strong>{review.name || "Anonymous"}</strong>
@@ -77,14 +93,17 @@ const ReviewsSection = () => {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Share your experience..."
+              required
             ></textarea>
           </div>
           <div className="mb-2">
-            <label>Rating:</label>
+            <label htmlFor="rating">Rating:</label>
             <select
+              id="rating"
               className="form-select"
               value={rating}
               onChange={(e) => setRating(e.target.value)}
+              required
             >
               {[1, 2, 3, 4, 5].map((num) => (
                 <option key={num} value={num}>

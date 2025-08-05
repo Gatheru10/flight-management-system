@@ -1,8 +1,15 @@
-// utils/axiosConfig.js
+// src/axiosConfig.js
 import axios from "axios";
 
+// Use CRA-compatible env variable
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+if (!backendUrl) {
+  console.warn("⚠️ REACT_APP_BACKEND_URL is undefined. Check your .env file.");
+}
+
 const instance = axios.create({
-  baseURL: "http://localhost:5000", // adjust if different
+  baseURL: backendUrl || "http://localhost:5000", // fallback for local dev
 });
 
 // Attach token to each request

@@ -13,7 +13,7 @@ const DealsSection = () => {
       route: "Nairobi (NBO) to Eldoret (EDL)",
       price: "KSH 7,000",
       offer: "Fly Business Class: Pay Economy (limited availability)",
-      image: "/images/Des1.jpg"
+      image: "/Images/Des1.jpg"
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const DealsSection = () => {
       route: "Nairobi (NBO) to Dubai (DXB)",
       price: "KSH 20,000",
       offer: "Honeymoon Special: Book now and get a free room upgrade!",
-      image: "/images/Des2.jpg"
+      image: "/Images/Des2.jpg"
     },
     {
       id: 3,
@@ -29,7 +29,7 @@ const DealsSection = () => {
       route: "Nairobi (NBO) to Mombasa (MBA)",
       price: "KSH 5,500",
       offer: "Early Bird Special: 15% off for bookings made before noon",
-      image: "/images/Des3.jpg"
+      image: "/Images/Des3.jpg"
     },
     {
       id: 4,
@@ -37,7 +37,7 @@ const DealsSection = () => {
       route: "Nairobi (NBO) to London (LHR)",
       price: "KSH 45,000",
       offer: "Student Discount: 20% off with valid student ID",
-      image: "/images/Des4.jpg"
+      image: "/Images/Des4.jpg"
     }
   ];
 

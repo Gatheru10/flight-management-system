@@ -11,7 +11,7 @@ const hotels = [
     location: "Palm Jumeirah, Dubai",
     rating: 4.9,
     pricePerNight: 18000,
-    imageUrl: "/images/atlantis.jpg",
+    imageUrl: "/Images/atlantis.jpg",
     website: "https://www.atlantis.com/dubai",
     amenities: ["wifi", "gym", "breakfast"],
     description:
@@ -24,7 +24,7 @@ const hotels = [
     location: "Downtown Dubai",
     rating: 4.3,
     pricePerNight: 8000,
-    imageUrl: "/images/rove.jpg",
+    imageUrl: "/Images/rove.jpg",
     website: "https://www.rovehotels.com",
     amenities: ["wifi", "gym", "breakfast"],
     description:
@@ -37,7 +37,7 @@ const hotels = [
     location: "Jumeirah Road, Dubai",
     rating: 4.7,
     pricePerNight: 15000,
-    imageUrl: "/images/jumeirah.jpg",
+    imageUrl: "/Images/jumeirah.jpg",
     website: "https://www.jumeirah.com",
     amenities: ["wifi", "gym"],
     description:
@@ -50,7 +50,7 @@ const hotels = [
     location: "Dubai Airport",
     rating: 4.1,
     pricePerNight: 6000,
-    imageUrl: "/images/premierinn.jpg",
+    imageUrl: "/Images/premierinn.jpg",
     website: "https://mena.premierinn.com",
     amenities: ["wifi", "breakfast"],
     description:

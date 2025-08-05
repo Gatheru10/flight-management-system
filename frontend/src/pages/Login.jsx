@@ -47,8 +47,10 @@ const LoginPage = () => {
 
     try {
       setLoading(true);
+      setLoading(true);
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-      const { data } = await axios.post("http://localhost:5000/api/users/login", { email, password });
+      const { data } = await axios.post(`${backendUrl}/api/users/login`, { email, password });
 
       localStorage.setItem("user", JSON.stringify(data));
       localStorage.setItem("token", data.token);

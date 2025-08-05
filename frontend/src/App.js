@@ -45,6 +45,8 @@ function AppWrapper() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
 
+   console.log("✅ Loaded env from CRA:", process.env.REACT_APP_BACKEND_URL);
+
   return (
     <>
       {!isAdminRoute && <Navbar />}

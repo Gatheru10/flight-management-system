@@ -13,7 +13,7 @@ const deals = [
     oldPrice: "KSh 15,000",
     discount: "34% OFF",
     validUntil: "8/15/2025",
-    image: "/images/Des1.jpg",
+    image: "/Images/Des1.jpg",
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const deals = [
     oldPrice: "KSh 12,000",
     discount: "38% OFF",
     validUntil: "8/20/2025",
-    image: "/images/Des6.jpg",
+    image: "/Images/Des6.jpg",
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const deals = [
     oldPrice: "KSh 10,500",
     discount: "35% OFF",
     validUntil: "8/18/2025",
-    image: "/images/Des5.jpg",
+    image: "/Images/Des5.jpg",
   },
   {
     id: 4,
@@ -49,7 +49,7 @@ const deals = [
     oldPrice: "KSh 13,000",
     discount: "37% OFF",
     validUntil: "8/25/2025",
-    image: "/images/Des3.jpg",
+    image: "/Images/Des3.jpg",
   },
 ];
 

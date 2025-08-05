@@ -36,10 +36,10 @@ const HotelTeaserDetailPage = () => {
       rating: 4.9,
       pricePerNight: 18000,
       images: [
-        "/images/atlantis.jpg",
-        "/images/atlantis-pool.jpg",
-        "/images/atlantis-room.jpg",
-        "/images/atlantis-lobby.jpg"
+        "/Images/atlantis.jpg",
+        "/Images/atlantis-pool.jpg",
+        "/Images/atlantis-room.jpg",
+        "/Images/atlantis-lobby.jpg"
       ],
       amenities: ["wifi", "gym", "breakfast", "pool", "parking", "restaurant"],
       description: "Experience ultimate luxury at Atlantis The Palm, featuring underwater suites, world-class dining, and the largest waterpark in the region.",
@@ -66,10 +66,10 @@ const HotelTeaserDetailPage = () => {
   rating: 4.5,
   pricePerNight: 6000,
   images: [
-    "/images/rove.jpg",
-    "/images/rove-room.jpg",
-    "/images/rove-lobby.jpg",
-    "/images/rove-rooftop.jpg"
+    "/Images/rove.jpg",
+    "/Images/rove-room.jpg",
+    "/Images/rove-lobby.jpg",
+    "/Images/rove-rooftop.jpg"
   ],
   amenities: ["wifi", "gym", "parking", "restaurant"],
   description: "A stylish and affordable hotel in the heart of the city, just a short walk from the Burj Khalifa and Dubai Mall.",
@@ -96,10 +96,10 @@ const HotelTeaserDetailPage = () => {
   rating: 4.8,
   pricePerNight: 15000,
   images: [
-    "/images/jumeirah.jpg",
-    "/images/jumeirah-beach.jpg",
-    "/images/jumeirah-room.jpg",
-    "/images/jumeirah-spa.jpg"
+    "/Images/jumeirah.jpg",
+    "/Images/jumeirah-beach.jpg",
+    "/Images/jumeirah-room.jpg",
+    "/Images/jumeirah-spa.jpg"
   ],
   amenities: ["wifi", "gym", "breakfast", "pool", "parking", "beachfront", "spa"],
   description: "A family-friendly beachfront resort offering iconic views of the Burj Al Arab and direct beach access.",
@@ -126,10 +126,10 @@ const HotelTeaserDetailPage = () => {
   rating: 4.2,
   pricePerNight: 4500,
   images: [
-    "/images/premierinn.jpg",
-    "/images/premierinn-room.jpg",
-    "/images/premierinn-lobby.jpg",
-    "/images/premierinn-rooftop.jpg"
+    "/Images/premierinn.jpg",
+    "/Images/premierinn-room.jpg",
+    "/Images/premierinn-lobby.jpg",
+    "/Images/premierinn-rooftop.jpg"
   ],
   amenities: ["wifi", "parking", "airportShuttle", "restaurant"],
   description: "Conveniently located near DXB, Premier Inn offers comfort and value for business and transit travelers.",
