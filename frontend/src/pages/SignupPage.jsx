@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { UserContext } from "../context/UserContext"; // ✅ import UserContext
 
 const SignupPage = () => {
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext); // ✅ use setUser
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -30,25 +33,24 @@ const SignupPage = () => {
     try {
       setLoading(true);
 
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-      // In real app, call signup API here
-
-      const user = {
+      const response = await axios.post(`${backendUrl}/api/users/signup`, {
         name,
         email,
-        avatar: `https://i.pravatar.cc/150?u=${email}`,
-        token: 'mock-signup-token'
-      };
+        password,
+      });
+
+      const user = response.data;
 
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', user.token);
+      setUser(user); // ✅ update user context
 
       navigate('/', { replace: true });
 
     } catch (err) {
-      setError('Signup failed. Please try again.');
+      setError(err.response?.data?.message || 'Signup failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -142,4 +144,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage; 
+export default SignupPage;

@@ -1,86 +1,131 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { FaGoogle, FaMoon, FaSun, FaUserShield } from "react-icons/fa";
+import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
-const SignupPage = () => {
+const LoginPage = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [theme, setTheme] = useState('light');
+  const [isAdminLoggingIn, setIsAdminLoggingIn] = useState(false);
+
+  // Auto-redirect if user already logged in
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const parsed = JSON.parse(storedUser);
+      if (parsed?.isAdmin) {
+        navigate("/admin", { replace: true });
+      } else {
+        navigate("/", { replace: true });
+      }
+    }
+  }, [navigate]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if (!name || !email || !password || !confirmPassword) {
-      setError('Please fill in all fields.');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match.');
+    if (!email || !password) {
+      setError("Please enter both email and password.");
       return;
     }
 
     try {
       setLoading(true);
+      setLoading(true);
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-      // Replace with your actual backend URL
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+      const { data } = await axios.post(`${backendUrl}/api/users/login`, { email, password });
 
-      const { data } = await axios.post(`${backendUrl}/api/users/signup`, {
-        name,
-        email,
-        password,
-      });
+      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("token", data.token);
+      setUser(data);
 
-      // Save user & token to localStorage
-      localStorage.setItem('user', JSON.stringify(data));
-      localStorage.setItem('token', data.token);
+      window.dispatchEvent(new Event("userLogin"));
+      toast.success("Login successful!");
 
-      // Redirect to homepage
-      navigate('/', { replace: true });
+      const destination = data?.isAdmin ? "/admin" : (location.state?.from || "/");
+      navigate(destination, { replace: true });
 
     } catch (err) {
-      setError(err.response?.data?.message || 'Signup failed. Please try again.');
+      setError(err.response?.data?.message || "Failed to login.");
+      toast.error(err.response?.data?.message || "Login failed.");
     } finally {
       setLoading(false);
     }
   };
 
-  return (
-    <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
-      <Card style={{ width: '26rem' }} className="p-4 shadow">
-        <h3 className="mb-3 text-center">Create an Account</h3>
+  const backgroundImage = theme === 'light'
+    ? '/Images/login.jpg'
+    : '/Images/night.jpg';
 
-        {error && <Alert variant="danger">{error}</Alert>}
+  const backgroundStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '100vh',
+    width: '100vw',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative'
+  };
+
+  const themeButtonStyle = {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    cursor: 'pointer',
+    color: '#fff',
+    background: 'rgba(0,0,0,0.3)',
+    borderRadius: '50%',
+    padding: '10px'
+  };
+
+  return (
+    <div style={backgroundStyle}>
+      <div style={themeButtonStyle} onClick={toggleTheme} title="Toggle Theme">
+        {theme === 'light' ? <FaMoon size={20} /> : <FaSun size={20} />}
+      </div>
+
+      <Card style={{ width: "24rem" }} className="p-4 shadow">
+        <h3 className="mb-3 text-center">Sign in</h3>
+
+        {isAdminLoggingIn && (
+          <div className="text-center text-warning mb-2">
+            <FaUserShield className="me-1" /> Logging in as Admin
+          </div>
+        )}
+
+        {error && <Alert variant="danger" className="mb-3">{error}</Alert>}
 
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>Full Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter your full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              disabled={loading}
-              required
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
               placeholder="Enter email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setIsAdminLoggingIn(e.target.value.toLowerCase().includes("admin"));
+              }}
               disabled={loading}
               required
             />
@@ -89,22 +134,10 @@ const SignupPage = () => {
           <Form.Group className="mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              disabled={loading}
-              required
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
               disabled={loading}
               required
             />
@@ -118,22 +151,32 @@ const SignupPage = () => {
           </Form.Group>
 
           <Button
+            variant="primary"
             type="submit"
-            variant="success"
-            className="w-100"
+            className="w-100 mb-3"
             disabled={loading}
           >
-            {loading ? 'Creating account...' : 'Sign up'}
+            {loading ? 'Signing in...' : 'Sign in'}
+          </Button>
+
+          <div className="text-center my-3">OR</div>
+
+          <Button
+            variant="outline-dark"
+            className="w-100 mb-2"
+            disabled
+          >
+            <FaGoogle className="me-2" /> Continue with Google (disabled)
           </Button>
 
           <div className="text-center mt-3">
-            Already have an account?{" "}
+            Don't have an account?{" "}
             <span
               className="text-primary"
               style={{ cursor: "pointer" }}
-              onClick={() => !loading && navigate("/login")}
+              onClick={() => !loading && navigate("/signup")}
             >
-              Sign in
+              Sign up
             </span>
           </div>
         </Form>
@@ -142,4 +185,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default LoginPage;
