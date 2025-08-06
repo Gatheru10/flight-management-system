@@ -30,7 +30,7 @@ const FlightCard = ({ flight }) => {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        'http://localhost:5000/api/bookings',
+        'https://final-project-2-ie9y.onrender.com/api/bookings',
         {
           user: user._id,
           flight: flight._id,
