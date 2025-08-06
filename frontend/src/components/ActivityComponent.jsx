@@ -11,7 +11,7 @@ const ActivityComponent = () => {
       try {
         const token = localStorage.getItem('token'); // ✅ Get token from storage
 
-        const res = await axios.get('http://localhost:5000/api/users/activity', {
+        const res = await axios.get('https://final-project-2-ie9y.onrender.com/api/users/activity', {
           headers: {
             Authorization: `Bearer ${token}`, // ✅ Add Authorization header
           },
