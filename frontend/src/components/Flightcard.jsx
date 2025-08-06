@@ -37,7 +37,7 @@ const FlightCard = ({ flight }) => {
           origin: flight.origin,
           destination: flight.destination,
           departure: flight.departureDate,
-          arrival: flight.estimatedArrival,
+          arrival: flight.arrivalDate || flight.estimatedArrival || flight.arrival || "2025-12-31T23:59:59Z",
           seatNumber: "Auto-Assign",
           numberOfGuests: passengers
         },
