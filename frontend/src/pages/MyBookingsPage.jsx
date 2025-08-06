@@ -10,7 +10,7 @@ import {
   FaSadTear
 } from 'react-icons/fa';
 import { Modal, Button, Spinner, Alert, Placeholder } from 'react-bootstrap';
-import axios from 'axios';
+import axios from '../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import './MyBookingsPage.css';
 import dayjs from 'dayjs';
@@ -35,7 +35,6 @@ const MyBookingsPage = () => {
   
   const bookingsPerPage = 2;
   const token = localStorage.getItem('token');
-  const BASE_URL = 'http://localhost:5000';
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,10 +49,10 @@ const MyBookingsPage = () => {
         setError(null);
         
         const [flightRes, hotelRes] = await Promise.all([
-          axios.get(`${BASE_URL}/api/bookings`, { 
+          axios.get(`/api/bookings`, { 
             headers: { Authorization: `Bearer ${token}` } 
           }),
-          axios.get(`${BASE_URL}/api/hotel-bookings`, { 
+          axios.get(`/api/hotel-bookings`, { 
             headers: { Authorization: `Bearer ${token}` } 
           })
         ]);
