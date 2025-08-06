@@ -32,8 +32,7 @@ const FlightCard = ({ flight }) => {
       const response = await axios.post(
         'https://final-project-2-ie9y.onrender.com/api/bookings',
         {
-          user: user._id,
-          flight: flight._id,
+          
           flightNumber: flight.flightNumber || flight.number || "UNKNOWN",
           origin: flight.origin,
           destination: flight.destination,
