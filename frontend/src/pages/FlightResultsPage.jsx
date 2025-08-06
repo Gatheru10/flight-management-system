@@ -25,7 +25,7 @@ const FlightResultsPage = () => {
 
       try {
         const params = new URLSearchParams({ origin, destination, date });
-        const res = await fetch(`http://localhost:5000/api/flights?${params}`);
+        const res = await fetch(`https://final-project-2-ie9y.onrender.com/api/flights?${params}`);
         if (!res.ok) throw new Error("Failed to fetch flights");
         const data = await res.json();
         setFlights(data);
