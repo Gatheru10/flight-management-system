@@ -16,8 +16,8 @@ const FlightSearchForm = () => {
   useEffect(() => {
     const fetchAirports = async () => {
       try {
-        const res1 = await fetch('http://localhost:5000/api/flights/origins');
-        const res2 = await fetch('http://localhost:5000/api/flights/destinations');
+        const res1 = await fetch('https://final-project-2-ie9y.onrender.com/api/flights/origins');
+        const res2 = await fetch('https://final-project-2-ie9y.onrender.com/api/flights/destinations');
         const data1 = await res1.json();
         const data2 = await res2.json();
         setOrigins(data1);
