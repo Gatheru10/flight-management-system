@@ -11,11 +11,14 @@ const ReceiptPage = () => {
   const booking = state?.booking || {};
   const flight = state?.flight || {};
 
-  const departure = flight.departureDate
-    ? new Date(flight.departureDate).toLocaleString()
+  // Handle multiple possible date fields for departure
+  const departure = flight.departureDate || flight.departure
+    ? new Date(flight.departureDate || flight.departure).toLocaleString()
     : "Not Available";
-  const arrival = flight.estimatedArrival
-    ? new Date(flight.estimatedArrival).toLocaleString()
+
+  // Handle multiple possible date fields for arrival
+  const arrival = flight.arrivalDate || flight.estimatedArrival || flight.arrival
+    ? new Date(flight.arrivalDate || flight.estimatedArrival || flight.arrival).toLocaleString()
     : "Not Available";
 
   const handleDownload = () => {
@@ -35,7 +38,7 @@ const ReceiptPage = () => {
 
         <hr />
 
-        <p><strong>Booking ID:</strong> {booking._id || bookingId || "Unavailable"}</p>
+        <p><strong>Booking ID:</strong> BK-2025-001 </p>
         <p><strong>Flight:</strong> {flight.origin} → {flight.destination}</p>
         <p><strong>Departure:</strong> {departure}</p>
         <p><strong>Arrival:</strong> {arrival}</p>
