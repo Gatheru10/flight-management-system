@@ -48,7 +48,7 @@ const AdminFlights = () => {
     e.preventDefault();
     try {
       await axios.post(
-        'http://localhost:5000/api/flights',
+        'https://final-project-2-ie9y.onrender.com/api/flights',
         { ...form, stops: form.stops.split(',').map(s => s.trim()) },
         { headers: { Authorization: `Bearer ${user.token}` } }
       );

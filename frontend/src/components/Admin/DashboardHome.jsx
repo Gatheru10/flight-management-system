@@ -12,7 +12,7 @@ const DashboardHome = () => {
   useEffect(() => {
     const fetchDashboardStats = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/admin/dashboard', {
+        const { data } = await axios.get('https://final-project-2-ie9y.onrender.com/api/admin/dashboard', {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
