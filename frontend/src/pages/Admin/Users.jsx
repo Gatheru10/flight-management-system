@@ -10,7 +10,7 @@ const Users = () => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/admin/users', {
+      const res = await axios.get('https://final-project-2-ie9y.onrender.com/api/admin/users', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
