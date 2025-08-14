@@ -24,7 +24,7 @@ const AdminFlights = () => {
   const fetchFlights = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get('http://localhost:5000/api/flights', {
+      const { data } = await axios.get('https://final-project-2-ie9y.onrender.com/api/flights', {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setFlights(data);
