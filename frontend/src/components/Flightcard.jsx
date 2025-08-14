@@ -83,7 +83,11 @@ const FlightCard = ({ flight }) => {
 
       <p>
         <FaPlaneArrival style={{ color: "#198754", marginRight: 8 }} />
-        Arrival: {flight.estimatedArrival ? dayjs(flight.estimatedArrival).format("MMM D, YYYY h:mm A") : "Invalid Date"}
+          Arrival: {flight.arrivalDate || flight.estimatedArrival || flight.arrival
+         ? dayjs(flight.arrivalDate || flight.estimatedArrival || flight.arrival)
+          .format("MMM D, YYYY h:mm A")
+         : "Invalid Date"}
+
       </p>
 
       <p>
