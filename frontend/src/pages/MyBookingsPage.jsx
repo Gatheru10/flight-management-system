@@ -37,6 +37,10 @@ const MyBookingsPage = () => {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
+  // ✅ Define BASE_URL once here
+  const BASE_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
+
   useEffect(() => {
     if (!token) {
       navigate('/login', { state: { from: '/my-bookings' } });
