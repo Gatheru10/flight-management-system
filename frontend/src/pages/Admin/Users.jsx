@@ -56,7 +56,7 @@ const Users = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/admin/users/${id}`, {
+      await axios.delete(`https://final-project-2-ie9y.onrender.com/api/admin/users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

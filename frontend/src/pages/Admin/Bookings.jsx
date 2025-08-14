@@ -11,7 +11,7 @@ const MyBookings = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/bookings', {
+      const res = await axios.get('https://final-project-2-ie9y.onrender.com/api/admin/bookings', {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

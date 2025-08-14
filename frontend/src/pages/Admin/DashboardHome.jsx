@@ -30,7 +30,7 @@ const DashboardHome = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/dashboard');
+        const res = await axios.get('https://final-project-2-ie9y.onrender.com/api/admin/dashboard');
         setStats(res.data.stats);
         setRecentUsers(res.data.recentUsers);
         setRecentBookings(res.data.recentBookings);
