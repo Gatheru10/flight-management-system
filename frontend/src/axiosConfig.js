@@ -9,7 +9,7 @@ if (!backendUrl) {
 }
 
 const instance = axios.create({
-  baseURL: backendUrl || "http://localhost:5000", // fallback for local dev
+  baseURL: backendUrl || "https://final-project-2-ie9y.onrender.com", // fallback for local dev
 });
 
 // Attach token to each request
